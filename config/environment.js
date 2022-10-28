@@ -3,6 +3,7 @@
 module.exports = function (environment) {
   const ENV = {
     modulePrefix: 'ember-todo-list',
+    podModulePrefix: 'ember-todo-list/pods',
     environment,
     rootURL: '/',
     locationType: 'history',

@@ -1,0 +1,37 @@
+{{! template-lint-disable require-input-label }}
+
+<h2>Dynamiczna</h2>
+<div>
+  wykonano tasków
+  {{this.completedTaskCount}}/{{this.tasks.length}}
+</div>
+<input
+  type='text'
+  placeholder='nazwa tasku'
+  value={{this.taskContent}}
+  {{on 'input' this.onInput}}
+/>
+<button
+  type='button'
+  disabled={{if this.taskContent false true}}
+  {{on 'click' this.onAddTask}}
+>Dodaj</button>
+
+<table border='1'>
+  <thead>
+    <tr>
+      <th>task</th>
+      <th>status</th>
+      <th>usun</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this.tasks as |task index|}}
+      <TodoList::Row
+        @task={{task}}
+        @onRemove={{fn this.onRemoveTask index}}
+        @onToggleStatus={{fn this.onToggleCheckbox index}}
+      />
+    {{/each}}
+  </tbody>
+</table>
